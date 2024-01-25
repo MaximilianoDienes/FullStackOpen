@@ -1,0 +1,5 @@
+// SPA new note diagram
+
+sequenceDiagram
+    Browser->>+Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    Note right of Browser: New note is pushed to the note array, and a callback function is executed to re-render the notes!
