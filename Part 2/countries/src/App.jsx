@@ -6,9 +6,6 @@ import { useState } from 'react'
 import { getAll, getWeather } from './services/countries';
 
 const App = () => {
-  // para clima usar esta URL https://api.openweathermap.org/data/3.0/onecall?lat={-34}&lon={-64}&appid={09a142d1c434bb728c58b37ce30b1c7c}
-  // https://api.openweathermap.org/data/2.5/weather?q=Buenos&20Aires&APPID=09a142d1c434bb728c58b37ce30b1c7c
-
   const [searchInput, setSearchInput] = useState('');
   const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
