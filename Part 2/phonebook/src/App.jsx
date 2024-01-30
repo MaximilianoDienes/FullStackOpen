@@ -85,7 +85,13 @@ const App = () => {
         setNewPerson({
           name: '',
           number: ''
-        });
+        })
+    })
+      .catch(error => {
+        setErrorMessage(error.response.data.error)
+        setTimeout(() => {
+          setErrorMessage(null);
+        }, 5000)
     })  
     }
   };
@@ -96,7 +102,7 @@ const App = () => {
       .then(deletedPerson => {
         setPersons((prevPersons) => prevPersons.filter(p => p.id !== id))
         setFilteredPersons((prevPersons) => prevPersons.filter(p => p.id !== id))
-        setSuccessMessage(`Deleted ${deletedPerson.name}`)
+        setSuccessMessage(`Deleted user succesfully`)
         setTimeout(() => {
           setSuccessMessage(null);
         }, 5000)
