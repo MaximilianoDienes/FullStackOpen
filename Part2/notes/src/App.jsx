@@ -46,16 +46,24 @@ const App = () => {
       important: Math.random() < 0.5,
     }
 
-    noteService.create(noteObject).then((createdNote) => {
-      setNotes(notes.concat(createdNote))
-      setNewNote('')
-      setSuccessMessage(
-        `Note '${createdNote.content}' was succesfully created!`,
-      )
-      setTimeout(() => {
-        setSuccessMessage(null)
-      }, 5000)
-    })
+    noteService
+      .create(noteObject)
+      .then((createdNote) => {
+        setNotes(notes.concat(createdNote))
+        setNewNote('')
+        setSuccessMessage(
+          `Note '${createdNote.content}' was succesfully created!`,
+        )
+        setTimeout(() => {
+          setSuccessMessage(null)
+        }, 5000)
+      })
+      .catch((error) => {
+        setErrorMessage(error.response.data.error)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
+      })
   }
 
   const handleNoteChange = (event) => {
