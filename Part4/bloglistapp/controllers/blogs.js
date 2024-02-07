@@ -19,6 +19,7 @@ blogRouter.get("/", async (request, response, next) => {
 
 blogRouter.post("/", async (request, response, next) => {
   try {
+    console.log("hola jajajajajja");
     if (!request.body.likes) {
       request.body.likes = 0;
     }

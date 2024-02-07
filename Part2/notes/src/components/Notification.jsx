@@ -1,13 +1,9 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import React from 'react'
-
-const Notification = ({ message, type }) => {
+const Notification = ({ message }) => {
   if (message === null) {
     return null
   }
 
-  return <div className={type}>{message}</div>
+  return <div className="error">{message}</div>
 }
 
 export default Notification

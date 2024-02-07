@@ -1,11 +1,11 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1heDIyIiwiaWQiOiI2NWJjNGYzMmVkY2NkZjExYTc4ZWM3OTYiLCJpYXQiOjE3MDY4Mzk4NjUsImV4cCI6MTcwNjg0MzQ2NX0.-Nl62mMXwQ0wDghlZu642X03LE6nO3vZ6mZVwmq435c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1heDIyMiIsImlkIjoiNjVjMGM0MTM1ZGExYzJlMjQ4YWQzZTZiIiwiaWF0IjoxNzA3MTMxOTM1LCJleHAiOjE3MDcxMzU1MzV9.vR9Zsjzo4fc_A845CEqfhWKEhgBDxRmRmmMtXHSMvH4
 
 {
     "title": "este es otro post de test",
-    "author": "max22",
+    "author": "holiiiiii",
     "url": "test.com",
     "likes": 5,
-    "userId": "65bc32ed2b8eb656f2c29234"
+    "userId": "65c0c4135da1c2e248ad3e6b"
 }

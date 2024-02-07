@@ -12,6 +12,7 @@ const { info, error } = require("./utils/logger");
 const blogRouter = require("./controllers/blogs");
 const usersRouter = require("./controllers/users");
 const loginRouter = require("./controllers/login");
+const testingRouter = require("./controllers/testing");
 
 info("connecting to", config.MONGODB_URI);
 
@@ -28,8 +29,13 @@ app.use(middleware.requestLogger);
 
 app.use("/api/login", loginRouter);
 app.use(middleware.getTokenFrom);
-app.use("/api/users", usersRouter);
 app.use("/api/blogs", middleware.extractUser, blogRouter);
+
+app.use("/api/users", usersRouter);
+
+if (process.env.NODE_ENV === "test") {
+  app.use("/api/testing", testingRouter);
+}
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
