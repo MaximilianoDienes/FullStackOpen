@@ -83,6 +83,19 @@ blogRouter.put("/:id", async (request, response, next) => {
     const updatedBlog = request.body;
     delete updatedBlog.id;
 
+    if (
+      Object.keys(request.body).length === 1 ||
+      Object.keys(request.body).includes("likes")
+    ) {
+      const result = await Blog.findByIdAndUpdate(
+        request.params.id,
+        { $set: updatedBlog },
+        { new: true }
+      );
+
+      return response.status(200).json(result);
+    }
+
     const post = await Blog.findById(request.params.id).populate("user", {
       username: 1,
       name: 1
@@ -103,6 +116,36 @@ blogRouter.put("/:id", async (request, response, next) => {
         .status(401)
         .json({ error: "forbidden: you can only update your own posts" });
     }
+  } catch (error) {
+    next(error);
+  }
+});
+
+blogRouter.post("/:id/comments", async (request, response, next) => {
+  try {
+    if (!request.user.id) {
+      return response.status(401).json({ error: "token invalid" });
+    }
+
+    const { comment } = request.body;
+
+    console.log(comment);
+
+    if (!comment || comment.trim().length === 0) {
+      return response.status(400).json({ error: "comment cannot be empty" });
+    }
+
+    const updatedBlog = await Blog.findByIdAndUpdate(
+      request.params.id,
+      { $push: { comments: comment } },
+      { new: true }
+    );
+
+    if (!updatedBlog) {
+      return response.status(404).json({ error: "Blog not found" });
+    }
+
+    return response.status(200).json(updatedBlog);
   } catch (error) {
     next(error);
   }
